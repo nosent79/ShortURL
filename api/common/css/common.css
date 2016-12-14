@@ -1,0 +1,64 @@
+/* Reset */
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, p, blockquote, th, td {margin:0; padding:0;}
+* {-webkit-text-size-adjust:none;}
+
+/* Basic Elements */
+html, body {/*min-width:500px;*/}
+body,table,td,div,textarea,input {font-family:"맑은 고딕","dotum"; font-size:11px; color:#333333;}
+html {overflow-y:scroll;}
+ul,li {list-style:none;}
+caption {display:none;}
+a img {border:0px;}
+input {color:#666666;}
+hr {display:none;}
+body {background-color:#eee;}
+
+a:link,
+a:active,
+a:visited	{color:#333; text-decoration:none;}
+a:hover		{color:#3366cc; text-decoration:underline;}
+
+/* png */
+.png24 { tmp:expression(setPng24(this)); }
+
+/* Common */
+.fl {float:left;}
+.fr {float:right;}
+.relative {position:relative;}
+.absolute {position:absolute;}
+.clearb {clear:both;}
+.hidden {display:none;}
+.b		{font-weight:bold;}
+.left {text-align:left;}
+.right {text-align:right;}
+.center {text-align:center;}
+.pointer, .hand {cursor:pointer;}
+.move {cursor:move;}
+.blue {color:blue;}
+.red {color:red;}
+
+.pdt10 {padding-top:10px;}
+
+.layout_box {position:relative; margin:0 auto; width:990px;}
+.clear_box {*zoom:1;}
+.clear_box:after {content:" "; display:block; clear:both;}
+
+#copyright .contactLayer {display:none; position:absolute; left:-35px; top:0px; padding-left:37px;}
+#copyright .contactLayerBox {width:200px; padding:5px; border:3px solid #e5e5e5;}
+
+#urlConvertForm {}
+/*#wrap #urlConvertForm #logo {position:absolute; top:-35px; width:172px; height:31px; font-size:24px; font-family:'tahoma'; font-weight:bold; background:url('/Common/images/surl.jpg')  no-repeat; }*/
+#urlConvertForm #logo {position:absolute; top:-35px; width:160px; height:30px; font-size:24px; font-family:'tahoma'; font-weight:bold; background:url('/Common/images/surl.png')  no-repeat; }
+#urlConvertForm #logoMenu {position:absolute; top:-21px; width:500px; height:31px; text-align:right;}
+#urlConvertForm h3 {display:none;}
+#urlConvertForm div.InputLongUrl {}
+#urlConvertForm div.InputLongUrl .inputLongUrlBox {float:left; border:4px solid #666; width:420px; padding:5px 0px 5px 10px; height:20px; color:#999;}
+#urlConvertForm div.InputLongUrl .inputLongUrlBox.focusIn {border:4px solid #696;}
+#urlConvertForm div.InputLongUrl .inputLongUrlBtn {float:right; border:4px solid #333; width:60px; height:38px; background-color:#666; color:#fff; cursor:hand;}
+#urlConvertForm div.OutputShortUrl	{width:500px; margin:0 auto; padding-top:10px; display:none;}
+#urlConvertForm div.OutputShortUrl .outputShortUrlBox {border:4px solid #696; padding:5px 0px 5px 10px; height:20px; background-color:#f5f5f5;}
+#urlConvertForm div.OutputShortUrl .error {color:red;}
+#urlConvertForm #copyright {padding-top:10px; font-size:10px; font-family:'tahoma';}
+
+#redirectionConfirmForm {position:absolute; top:30%; width:100%; padding:0px; text-align:center; border-left:0px; border:0px; font-size:14px}
+#redirectionConfirmForm button {}
