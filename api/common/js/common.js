@@ -38,12 +38,11 @@ function submitConvertForm(frm){
 }
 
 $(document).ready(function(){
-    alert('a');
     $('.inputLongUrlBox').each(function(){
         if(global_ismobile){
             $(this).data('defaultValue','긴 주소를 입력하세요');
         }else{
-            $(this).data('defaultValue','긴 주소를 입력하세요 예) www.abcd.kr 또는 http://www.abcd.kr');
+            $(this).data('defaultValue','긴 주소를 입력하세요');
         }
         $(this).attr('value',$(this).data('defaultValue'));
         $(this)
