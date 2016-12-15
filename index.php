@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="/api/common/css/common.css" type="text/css" />
     <link rel="stylesheet" href="/api/common/css/index.css" type="text/css" />
 
-    <script>
-        var global_ismobile=false;
-    </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="/api/common/js/common.js"></script>
 </head>

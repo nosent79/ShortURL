@@ -20,8 +20,8 @@
     }
 
     // 단축 URL 조회 후 존재하면 리다이렉트
-    if (($url = $db->url_exist($alias))) {
-        header("Location: //$url", true, 301);
+    if (($url = $db->alias_exist($alias))) {
+        header("Location: {$url}", true, 301);
         exit;
     }
 
