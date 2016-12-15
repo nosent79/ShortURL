@@ -208,7 +208,7 @@
          */
         public function insertURL(Array $info)
         {
-            $sql = " insert into tbl_short_url ( url, alias, reg_dt ) values ( :url, :alias, now() )";
+            $sql = " insert into tbl_short_url ( url, alias, reg_dt, expire_dt ) values ( :url, :alias, now(),  date_add(now(), INTERVAL 30 DAY))";
             $this->query($sql);
             $this->bind(":url", $info['url']);
             $this->bind(":alias", $info['alias']);
