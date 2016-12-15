@@ -29,7 +29,7 @@
             $code   = "00";
             $status = "success";
             $msg    = "success";
-            $alias  = "{SITE_URL}{$alias}";
+            $alias  = SITE_URL . $alias;
 
         } else {
             $code   = "99";
