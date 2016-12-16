@@ -32,7 +32,7 @@
             $alias  = SITE_URL . $alias;
 
         } else {
-            $code   = "99";
+            $code   = "91";
             $status = "error";
             $msg    = "error";
         }

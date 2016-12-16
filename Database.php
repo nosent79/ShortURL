@@ -68,25 +68,51 @@
             $this->stmt->bindValue($param, $value, $type);
         }
 
-        public function execute(){
+        public function execute()
+        {
             return $this->stmt->execute();
         }
 
-        public function single(){
+        public function resultset()
+        {
+            $this->execute();
+            return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function single()
+        {
             $this->execute();
             return $this->stmt->fetch(PDO::FETCH_ASSOC);
         }
 
-        public function rowCount(){
+        public function rowCount()
+        {
             return $this->stmt->rowCount();
         }
 
-        public function lastInsertId(){
+        public function lastInsertId()
+        {
             return $this->dbh->lastInsertId();
         }
 
-        public function debugDumpParams(){
+        public function debugDumpParams()
+        {
             return $this->stmt->debugDumpParams();
+        }
+
+        public function beginTransaction()
+        {
+            return $this->dbh->beginTransaction();
+        }
+
+        public function endTransaction()
+        {
+            return $this->dbh->commit();
+        }
+
+        public function cancelTransaction()
+        {
+            return $this->dbh->rollBack();
         }
 
         public function getConnection()
@@ -115,6 +141,16 @@
             $result = $this->single();
 
             return addURLScheme($result['url']);
+        }
+
+        public function updateHits($alias)
+        {
+            $sql = "update tbl_short_url set hit = hit + 1 where alias=:alias";
+            $this->query($sql);
+            $this->bind(":alias", $alias);
+            $this->execute();
+
+            return $this->rowCount();
         }
 
         /**
@@ -192,8 +228,6 @@
          */
         public function redirectUrl($alias)
         {
-//            var_dump($this->isExpiredDate($alias)) or die();
-
             if ($this->isExpiredDate($alias) === true) {
                 header("Location: ". SITE_URL, true, 301);
                 exit;
@@ -228,5 +262,91 @@
             $this->query($sql);
             $this->bind(":alias", $alias);
             $this->execute();
+        }
+
+        /**
+         * 단축 URL 삭제 (ID)
+         *
+         * @param $alias
+         */
+        public function deleteURLByID($id)
+        {
+            $sql = "delete from tbl_short_url where id = :id";
+            $this->query($sql);
+            $this->bind(":id", $id);
+            $this->execute();
+
+            return $this->rowCount();
+        }
+
+        /**
+         * 단축 URL 기간 연장
+         *
+         * @param $admin
+         * @return null
+         */
+        public function extendExpireURLByID($id)
+        {
+            $sql = "update tbl_short_url set expire_dt = date_add(expire_dt, INTERVAL 7 DAY) where id = :id";
+            $this->query($sql);
+            $this->bind(":id", $id);
+            $this->execute();
+
+            return $this->rowCount();
+        }
+
+        public function getAdminInfo($admin)
+        {
+            $sql = "select admin_id, admin_nm, admin_pwd from tbl_admin where admin_id = :admin_id";
+            $this->query($sql);
+            $this->bind(":admin_id", $admin['id']);
+            $result = $this->single();
+
+            if (!$result) {
+                return null;
+            }
+
+            if (! $this->isValidAdminPassword($admin['pwd'], $result['admin_pwd'])) {
+                return null;
+            }
+
+            return $result;
+        }
+
+        /**
+         * 관리자 비밀번호 검증
+         *
+         * @param $pwd
+         * @param $admin_pwd
+         * @return bool
+         */
+        public function isValidAdminPassword($pwd, $admin_pwd)
+        {
+            return password_verify($pwd, $admin_pwd);
+        }
+
+        public function getShortenUrlList()
+        {
+            $sql = "select id, url, alias, hit, expire_dt, reg_dt from tbl_short_url";
+            $this->query($sql);
+            $result = $this->resultset($sql);
+
+            return $result;
+        }
+
+        /**
+         *
+         *
+         * @param $id
+         * @return mixed
+         */
+        public function getExpireDT($id)
+        {
+            $sql = "select expire_dt from tbl_short_url where id = :id";
+            $this->query($sql);
+            $this->bind(":id", $id);
+            $result = $this->single();
+
+            return $result['expire_dt'];
         }
     }
