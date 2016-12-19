@@ -14,7 +14,7 @@
     $url = $_POST['longUrl'];
 
     //
-    if ($alias = $db->url_exist($url)) {
+    if ($db->url_exist($url)) {
         $code   = "99";
         $status = "error";
         $msg    = "Already exists";
@@ -39,13 +39,13 @@
             $status = "error";
             $msg    = "error";
         }
-
-        $result = [
-            "code"      => $code,
-            "status"    => $status,
-            "alias"     => $alias,
-            "msg"       => $msg,
-        ];
-
-        echo json_encode($result);
     }
+
+    $result = [
+        "code"      => $code,
+        "status"    => $status,
+        "alias"     => $alias,
+        "msg"       => $msg,
+    ];
+
+    echo json_encode($result);
