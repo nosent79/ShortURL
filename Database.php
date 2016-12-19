@@ -167,10 +167,10 @@
             $result = $this->single();
 
             if (!$result) {
-                return null;
+                return false;
             }
 
-            return $result['alias'];
+            return true;
         }
 
         /**
