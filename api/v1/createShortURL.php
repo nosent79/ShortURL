@@ -15,6 +15,9 @@
 
     //
     if ($alias = $db->url_exist($url)) {
+        $code   = "99";
+        $status = "error";
+        $msg    = "Already exists";
 
     // 실 URL이 존재하지 않을 경우 단축 URL 생성하고 DB에 등록
     } else {
