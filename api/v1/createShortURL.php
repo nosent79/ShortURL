@@ -14,7 +14,7 @@
     $url = $_POST['longUrl'];
 
     //
-    if ($db->url_exist($url)) {
+    if ($alias = $db->url_exist($url)) {
         $code   = "99";
         $status = "error";
         $msg    = "Already exists";
