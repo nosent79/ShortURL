@@ -5,7 +5,6 @@
  * Date: 2016-12-14
  * Time: 오후 12:23
  */
-
     require_once "Database.php";
 
     //$conn = (new Database())->getConnection();
